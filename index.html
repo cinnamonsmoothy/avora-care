@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    document.documentElement.classList.add('site-loading');
+    window.siteLoadingStarted = performance.now();
+    window.siteLoadingTimeout = setTimeout(function () {
+      if (window.dismissSiteLoader) window.dismissSiteLoader();
+      else document.documentElement.classList.remove('site-loading');
+    }, 6000);
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f3eb">
+  <meta name="description" content="Avora Care â€” thoughtful domiciliary care and home support, centred around comfort, dignity and the people who matter most.">
+  <title>Avora Care | Compassionate Care at Home</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Manrope:wght@400;450;500;550;600;650;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/hero-poster.webp">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="site-loader" id="site-loader" role="status" aria-label="Loading Avora Care">
+    <div class="loader-content">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="515 190 506 432" fill="none" class="loader-logo" aria-hidden="true" focusable="false">
+  <path class="loader-roof" pathLength="1" d="M584 360 L768 197 L952 360" stroke="#608668" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="loader-chimney" d="M869 222 Q869 213 878 213 H907 Q917 213 917 223 V302 L869 260Z" fill="#608668"/>
+  <g class="loader-windows" fill="#42634C"><rect x="723" y="325" width="39" height="39" rx="4"/><rect x="776" y="325" width="39" height="39" rx="4"/><rect x="723" y="377" width="39" height="39" rx="4"/><rect x="776" y="377" width="39" height="39" rx="4"/></g>
+  <path class="loader-hand loader-hand-left" fill="#608668" d="M759 608 C718 585 666 581 626 559 C576 531 542 489 531 443 C524 415 525 388 529 373 C534 359 543 365 551 377 C571 408 583 444 619 473 C635 486 647 492 659 499 C638 473 611 455 597 438 C587 426 591 416 604 417 C618 419 643 442 671 454 C727 478 756 524 759 608 Z"/>
+  <path class="loader-hand loader-hand-right" fill="#608668" d="M777 608 C818 585 870 581 910 559 C960 531 994 489 1005 443 C1012 415 1011 388 1007 373 C1002 359 993 365 985 377 C965 408 953 444 917 473 C901 486 889 492 877 499 C898 473 925 455 939 438 C949 426 945 416 932 417 C918 419 893 442 865 454 C809 478 780 524 777 608 Z"/>
+</svg>
+
+      <div class="loader-brand" aria-hidden="true">Avora <span>Care</span></div>
+      <span class="loader-progress" aria-hidden="true"></span>
+    </div>
+  </div>
+  <svg class="icon-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 8.6c0 4.4-8.8 10.8-8.8 10.8S3.2 13 3.2 8.6A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 8.8 1.8Z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3V10Z"/><path d="M9 20v-7h6v7"/></symbol>
+    <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M2.5 20v-2a6.5 6.5 0 0 1 13 0v2M16 4.7a3 3 0 0 1 0 6m1 3a5.5 5.5 0 0 1 4.5 5.4V20"/></symbol>
+    <symbol id="i-hand-heart" viewBox="0 0 24 24"><path d="M4 13V9a2 2 0 0 1 4 0v3m8 0V8a2 2 0 0 1 4 0v7c0 3-2.5 4.5-5 5H9c-3 0-5-2-5-5v-2Z"/><path d="M12 11s-3.4-2.3-3.4-4.2a2.1 2.1 0 0 1 3.4-1.6 2.1 2.1 0 0 1 3.4 1.6C15.4 8.7 12 11 12 11Z"/></symbol>
+    <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 8h12v7a6 6 0 0 1-12 0V8Zm12 1h2a3.5 3.5 0 0 1 0 7h-2M3 21h16M8 3v2m4-2v2"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 20 5v6c0 5-3.5 8.4-8 11-4.5-2.6-8-6-8-11V5l8-3Z"/><path d="m8.5 12.2 2.2 2.2 4.8-4.9"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20.8 3.2c-10 .2-16.7 5-16.7 12.1A5.4 5.4 0 0 0 9.7 21C17 21 21.8 13 20.8 3.2Z"/><path d="M4.5 19.5c3-4.5 6.2-7.6 12.5-11"/></symbol>
+    <symbol id="i-person-care" viewBox="0 0 24 24"><circle cx="8" cy="6" r="3"/><path d="M2.5 20v-1.5A5.5 5.5 0 0 1 8 13h1"/><path d="M16.5 20s-4.5-3.1-4.5-5.6a2.4 2.4 0 0 1 4.5-1.2 2.4 2.4 0 0 1 4.5 1.2c0 2.5-4.5 5.6-4.5 5.6Z"/></symbol>
+    <symbol id="i-conversation" viewBox="0 0 24 24"><path d="M4 5h11a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H9l-4 3v-3a3 3 0 0 1-3-3V8a3 3 0 0 1 2-3Z"/><path d="M18 9h1a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3v3l-4-3h-3M7 9h6"/></symbol>
+    <symbol id="i-home-support" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7M5 10v10h14V10"/><path d="m9 15 2 2 4-4"/></symbol>
+    <symbol id="i-family" viewBox="0 0 24 24"><circle cx="8" cy="8" r="2.5"/><circle cx="16" cy="8" r="2.5"/><path d="M3 19v-1a5 5 0 0 1 5-5c1.6 0 3 .7 4 1.9A5 5 0 0 1 21 18v1M12 14.9V20"/></symbol>
+    <symbol id="i-respite" viewBox="0 0 24 24"><path d="M19 15.5A8 8 0 0 1 8.5 5 8 8 0 1 0 19 15.5Z"/><path d="M16 4v4m-2-2h4"/></symbol>
+    <symbol id="i-dementia" viewBox="0 0 24 24"><path d="M12 20V7a3 3 0 0 0-5.8-1A3.5 3.5 0 0 0 4 11.8 3.5 3.5 0 0 0 6 18a3.5 3.5 0 0 0 6 2ZM12 20V7a3 3 0 0 1 5.8-1 3.5 3.5 0 0 1 2.2 5.8A3.5 3.5 0 0 1 18 18a3.5 3.5 0 0 1-6 2Z"/><path d="M7 10c1.5 0 2.5 1 2.5 2.5M17 10c-1.5 0-2.5 1-2.5 2.5"/></symbol>
+    <symbol id="i-live-in" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7M5 10v10h14V10"/><path d="M12 17s-3-2-3-3.7a1.6 1.6 0 0 1 3-.8 1.6 1.6 0 0 1 3 .8C15 15 12 17 12 17Z"/></symbol>
+    <symbol id="i-end-of-life" viewBox="0 0 24 24"><path d="M3 15.5 6 14l4 2h4a2 2 0 0 1 2 2H9m7 0 3-2a2 2 0 0 1 2.5.5l-4.5 4H8l-5-2"/><path d="M13 12s-3.5-2.4-3.5-4.4a1.9 1.9 0 0 1 3.5-1 1.9 1.9 0 0 1 3.5 1C16.5 9.6 13 12 13 12Z"/></symbol>
+    <symbol id="i-supported-living" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7M5 10v10h14V10"/><circle cx="12" cy="13" r="1.5"/><path d="M9 19v-.5a3 3 0 0 1 6 0v.5"/></symbol>
+    <symbol id="i-household" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7M5 10v10h14V10"/><path d="M9 14h6m-6 3h4"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.2 3.6 9 3l2.4 4.5-1.9 2c1 2.1 2.6 3.8 4.9 5l2-1.8 4.6 2.3-.6 2.8a3 3 0 0 1-3.4 2.4C9.2 19 4.7 14.6 3.8 7a3 3 0 0 1 2.4-3.4Z"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner container-wide">
+      <a href="#home" class="brand" aria-label="Avora Care, back to home">
+        <img src="assets/avora-mark.svg" class="brand-mark" alt="" width="46" height="46">
+        <span class="brand-name">Avora <span>Care</span></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="#approach">Our Approach</a>
+        <a class="nav-link" href="#services">Our Services</a>
+        <a class="nav-link" href="#about">About Us</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+      <a class="header-cta" href="#contact">Let's Talk</a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="icon menu-open-icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        <svg class="icon menu-close-icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" inert>
+      <a href="#home">Home</a>
+      <a href="#approach">Our Approach</a>
+      <a href="#services">Our Services</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <a class="mobile-nav-cta" href="#contact">Let's Talk</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="hero-approach-transition">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.webp" aria-hidden="true" tabindex="-1">
+        <source src="assets/hero-background.webm" type="video/webm">
+        <source src="assets/hero-background.mp4" type="video/mp4">
+      </video>
+      <div class="hero-wash" aria-hidden="true"></div>
+      <div class="hero-content container-wide">
+        <div class="hero-copy">
+          <h1 id="hero-title">Compassionate<br>care <span>at home.</span></h1>
+          <p class="hero-description">Thoughtful, personalised support that brings comfort, dignity and a little more peace of mind to everyday life.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Find care near me</a>
+          </div>
+          <div class="hero-assurances" aria-label="What matters to us">
+            <div class="assurance"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg><span>Person-centred<br>care</span></div>
+            <span class="assurance-divider" aria-hidden="true"></span>
+            <div class="assurance"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg><span>Comfort of<br>home</span></div>
+            <span class="assurance-divider" aria-hidden="true"></span>
+            <div class="assurance"><svg class="icon" aria-hidden="true"><use href="#i-people"/></svg><span>Support that<br>feels personal</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-section section-padding" id="approach" aria-labelledby="approach-heading">
+      <svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute; overflow: hidden">
+        <path id="leaf-flight-path" d="M52 10 C94 17 7 24 47 35 C88 45 103 55 69 56 C35 57 18 47 41 43 C64 38 90 47 56 62 C12 73 75 75 49 84"/>
+      </svg>
+      <svg class="falling-leaf" id="falling-leaf" viewBox="0 0 64 88" fill="none" aria-hidden="true" focusable="false">
+        <g stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M29 72C8 65 7 44 18 28 27 15 42 10 51 5 55 24 58 43 48 58 43 66 36 70 29 72Z" fill="#dce8d9"/>
+          <path d="M23 83C29 63 36 43 47 15M30 65 19 48M35 51 48 43M39 38 29 29"/>
+        </g>
+      </svg>
+      <div class="container section-grid intro-grid">
+        <div class="intro-image reveal">
+          <div class="intro-image-crop">
+            <img src="assets/caring-lady.jpg" alt="A carer sharing a warm moment with an older woman at home" width="794" height="754" loading="lazy">
+          </div>
+        </div>
+        <div class="section-copy reveal">
+          <h2 class="section-heading" id="approach-heading">Care should feel<br><em>like being cared for.</em></h2>
+          <p class="lead-paragraph">Thoughtful care, shaped around the life you want to lead at home.</p>
+          <p>We support older people, those recovering and people living with disabilities across Solihull and surrounding areas. From everyday personal and domestic help to specialist care for complex conditions, our support is tailored to each person.</p>
+          <p>Whether you need a short visit or 24-hour care, we work closely with you and your family to make life at home safer, more comfortable and more independent.</p>
+          <a class="btn btn-primary" href="#about">Get to know us</a>
+        </div>
+      </div>
+    </section>
+
+    </div>
+
+    <section class="services-section section-padding" id="services" aria-labelledby="services-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <div><h2 class="section-heading" id="services-heading">Support for life's<br><em>everyday moments.</em></h2></div>
+          <p>From a helping hand with daily routines to simply having someone there, care can make home feel even more like home.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card reveal"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-person-care"/></svg></span><h3>Personal Care</h3><p>Respectful help with personal routines, tailored to individual preferences and comfort.</p></article>
+          <article class="service-card reveal"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-respite"/></svg></span><h3>Respite Care</h3><p>Reliable support that gives family carers time to rest and recharge.</p></article>
+          <article class="service-card reveal"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-dementia"/></svg></span><h3>Dementia Care</h3><p>Patient, familiar support that helps people living with dementia feel safe at home.</p></article>
+          <article class="service-card reveal"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-live-in"/></svg></span><h3>Live-in Care</h3><p>Round-the-clock support at home, built around individual routines and needs.</p></article>
+          <article class="service-card reveal"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-end-of-life"/></svg></span><h3>End of Life Care</h3><p>Compassionate care focused on comfort, dignity and support for loved ones.</p></article>
+          <article class="service-card reveal"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-supported-living"/></svg></span><h3>Supported Living</h3><p>Practical support that helps people live as independently as possible.</p></article>
+          <article class="service-card reveal"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-household"/></svg></span><h3>Household & Domestic</h3><p>A helping hand with household tasks to keep everyday life running smoothly.</p></article>
+          <article class="service-card reveal"><span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-conversation"/></svg></span><h3>Companionship</h3><p>Friendly company and meaningful conversation to make the day brighter.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section section-padding" id="about" aria-labelledby="about-heading">
+      <div class="container about-grid">
+        <div class="about-copy reveal">
+          <h2 class="section-heading" id="about-heading">More than support.<br><em>A sense of belonging.</em></h2>
+          <p>Good care is about more than a checklist. It's about knowing how someone takes their tea, the routines they enjoy and what makes them feel at ease.</p>
+          <p>We want care to feel natural, reassuring and rooted in the everyday moments that matter most.</p>
+          <a href="#contact" class="btn btn-primary">Start a conversation</a>
+        </div>
+        <div class="about-image reveal">
+          <div class="about-image-crop">
+            <img src="assets/caring-lady-2.png" alt="A carer and a client talking together at home" width="1448" height="1086" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps-section section-padding" aria-labelledby="steps-heading">
+      <div class="container steps-layout">
+        <div class="steps-heading reveal">
+          <h2 class="section-heading" id="steps-heading">Care begins with<br><em>a conversation.</em></h2>
+          <p>Finding the right care should feel reassuring. We'll listen, explore what you need and help you take the next step.</p>
+        </div>
+        <ol class="steps-grid">
+          <li class="step reveal"><span class="step-number" aria-hidden="true">1</span><div class="step-copy"><h3>Let's get to know you</h3><p>Tell us what matters to you and the support you're looking for.</p></div></li>
+          <li class="step reveal"><span class="step-number" aria-hidden="true">2</span><div class="step-copy"><h3>Explore your options</h3><p>Together, we'll shape a care plan around your needs, preferences and routines.</p></div></li>
+          <li class="step reveal"><span class="step-number" aria-hidden="true">3</span><div class="step-copy"><h3>Feel at home</h3><p>Begin personalised support that brings comfort, confidence and peace of mind.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+      <div class="contact-stage">
+        <div class="contact-content container">
+          <h2 id="contact-heading">A little help can<br>make a <em>big difference.</em></h2>
+          <p class="contact-intro">Whether you're exploring care for yourself or someone close to you, we'd love to hear from you.</p>
+          <fieldset class="contact-choices">
+            <legend>What would you like to talk about?</legend>
+            <div class="contact-options">
+              <label class="contact-option"><input type="radio" name="enquiry" value="care"><span>I'm looking for care</span></label>
+              <label class="contact-option"><input type="radio" name="enquiry" value="family"><span>I'm enquiring for someone else</span></label>
+              <label class="contact-option"><input type="radio" name="enquiry" value="team"><span>I'd like to join the team</span></label>
+              <label class="contact-option"><input type="radio" name="enquiry" value="other" aria-controls="contact-other-message"><span>Something else</span></label>
+            </div>
+          </fieldset>
+          <div class="contact-other-message" id="contact-other-message" hidden>
+            <label for="contact-message">What's on your mind?</label>
+            <textarea id="contact-message" name="message" rows="3" placeholder="Tell us how we can help..."></textarea>
+          </div>
+          <a class="btn btn-primary contact-whatsapp" id="contact-whatsapp" href="https://wa.me/447777777777?text=Hello%2C%20I'd%20like%20to%20find%20out%20more%20about%20Avora%20Care." target="_blank" rel="noopener noreferrer">Let's talk on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="contact-atmosphere" aria-hidden="true"></div>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-brand-col"><a href="#home" class="brand footer-brand"><img src="assets/avora-mark.svg" alt="" width="44" height="44"><span class="brand-name">Avora <span>Care</span></span></a><p>Compassionate care in the comfort of home.</p></div>
+      <div class="footer-nav"><span>Explore</span><a href="#approach">Our Approach</a><a href="#services">Our Services</a><a href="#about">About Avora</a></div>
+      <div class="footer-nav"><span>Connect</span><a href="#contact">Get in touch</a><a href="#contact">Care enquiries</a><a href="#contact">Join our team</a></div>
+    </div>
+    <div class="container footer-bottom"><span>Â© <span id="year"></span> Avora Care. All rights reserved.</span><div class="footer-credits"><span>Made for moments that matter.</span><a class="footer-credit" href="https://sitehoney.co.uk">Made with &#10084;&#65039; by sitehoney.co.uk</a></div></div>
+  </footer>
+  <a class="whatsapp-button" href="https://wa.me/447777777777" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp (opens in a new tab)">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12.04 2a9.92 9.92 0 0 0-8.57 14.92L2 22l5.22-1.37A9.96 9.96 0 1 0 12.04 2Zm0 18.1a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.1.81.83-3.02-.2-.31a8.15 8.15 0 1 1 6.9 3.83Zm4.47-6.1c-.25-.13-1.47-.72-1.7-.8-.22-.09-.39-.13-.55.12-.17.25-.64.8-.78.96-.15.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.24a7.5 7.5 0 0 1-1.39-1.73c-.14-.25-.01-.38.11-.5.11-.12.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.55-1.33-.76-1.82-.2-.47-.4-.41-.55-.42h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.06s.89 2.38 1.01 2.54c.12.17 1.74 2.66 4.22 3.73.59.26 1.05.41 1.41.53.59.18 1.12.16 1.55.1.47-.07 1.47-.6 1.67-1.17.21-.58.21-1.07.15-1.17-.06-.11-.23-.17-.48-.29Z"/></svg>
+  </a>
+  <script src="script.js" defer></script>
+</body>
+</html>
+
