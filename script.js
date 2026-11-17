@@ -86,7 +86,7 @@ if ('IntersectionObserver' in window) {
 // Respect OS reduced-motion setting and avoid wasting power in hidden tabs.
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 // Tall mobile content must scroll in normal flow rather than overlap the pinned hero.
-const compactHeroLayout = window.matchMedia('(max-width: 900px), (max-height: 650px)');
+const compactHeroLayout = window.matchMedia('(max-width: 900px), (max-height: 650px), (hover: none)');
 const hero = document.getElementById('home');
 const approach = document.getElementById('approach');
 const fallingLeaf = document.getElementById('falling-leaf');
@@ -100,8 +100,7 @@ function syncHeroTransition() {
   const transitionEnabled = !reducedMotion.matches && !compactHeroLayout.matches;
   document.documentElement.classList.toggle('scroll-transition', transitionEnabled);
   if (!transitionEnabled) {
-    const fade = reducedMotion.matches ? 0 : clampProgress(-hero.getBoundingClientRect().top / (window.innerHeight * .4));
-    hero.style.setProperty('--hero-whiteout', fade.toFixed(3));
+    hero.style.setProperty('--hero-whiteout', '0');
     approach.classList.remove('is-present');
     approach.style.removeProperty('--approach-opacity');
     approach.style.removeProperty('--approach-offset');
