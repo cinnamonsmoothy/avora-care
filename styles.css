@@ -390,7 +390,9 @@ img, video { max-width: 100%; }
 @media (max-width: 900px), (max-height: 650px), (hover: none) {
   .scroll-transition .hero-approach-transition { min-height: 0; }
   .scroll-transition .hero { position: relative; top: auto; }
-  .hero::after { display: none; }
+  .hero::after { display: block; }
   .scroll-transition .intro-section { position: relative; top: auto; margin-top: 0; min-height: 0; padding-block: 82px; background: #fff; opacity: 1; transform: none; pointer-events: auto; }
   .intro-section .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+@media (prefers-reduced-motion: reduce) { .hero::after { display: none; } }

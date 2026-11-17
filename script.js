@@ -100,7 +100,10 @@ function syncHeroTransition() {
   const transitionEnabled = !reducedMotion.matches && !compactHeroLayout.matches;
   document.documentElement.classList.toggle('scroll-transition', transitionEnabled);
   if (!transitionEnabled) {
-    hero.style.setProperty('--hero-whiteout', '0');
+    // Fade the normally scrolling hero using its stable height, not the
+    // changing mobile browser viewport. No pinned overlap is needed.
+    const fade = reducedMotion.matches ? 0 : clampProgress(-hero.getBoundingClientRect().top / (hero.offsetHeight * .4));
+    hero.style.setProperty('--hero-whiteout', fade.toFixed(3));
     approach.classList.remove('is-present');
     approach.style.removeProperty('--approach-opacity');
     approach.style.removeProperty('--approach-offset');
