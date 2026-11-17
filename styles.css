@@ -293,12 +293,6 @@ img, video { max-width: 100%; }
 .scroll-transition .intro-section .reveal { opacity: 1; transform: none; transition: none; }
 .scroll-transition .intro-grid { align-items: center; }
 .scroll-transition .intro-grid .section-copy { padding-top: 0; }
-@media (max-width: 680px) {
-  .scroll-transition .hero-approach-transition { min-height: 200svh; }
-}
-@media (max-width: 600px) {
-  .scroll-transition .intro-section { padding-block: 90px 36px; }
-}
 @media (prefers-reduced-motion: reduce) {
   .hero::after { display: none; }
   .falling-leaf { display: none; }

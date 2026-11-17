@@ -85,6 +85,8 @@ if ('IntersectionObserver' in window) {
 
 // Respect OS reduced-motion setting and avoid wasting power in hidden tabs.
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+// Tall mobile content must scroll in normal flow rather than overlap the pinned hero.
+const compactHeroLayout = window.matchMedia('(max-width: 900px), (max-height: 650px)');
 const hero = document.getElementById('home');
 const approach = document.getElementById('approach');
 const fallingLeaf = document.getElementById('falling-leaf');
@@ -95,20 +97,21 @@ let transitionFrame = 0;
 function syncHeroTransition() {
   transitionFrame = 0;
   if (!hero || !approach) return;
-  const transitionEnabled = !reducedMotion.matches;
+  const transitionEnabled = !reducedMotion.matches && !compactHeroLayout.matches;
   document.documentElement.classList.toggle('scroll-transition', transitionEnabled);
   if (!transitionEnabled) {
     const fade = reducedMotion.matches ? 0 : clampProgress(-hero.getBoundingClientRect().top / (window.innerHeight * .4));
     hero.style.setProperty('--hero-whiteout', fade.toFixed(3));
     approach.classList.remove('is-present');
+    approach.style.removeProperty('--approach-opacity');
+    approach.style.removeProperty('--approach-offset');
     if (fallingLeaf) fallingLeaf.style.opacity = '0';
     return;
   }
   const viewport = window.innerHeight;
   const distance = -hero.parentElement.getBoundingClientRect().top;
-  const mobile = window.innerWidth <= 680;
-  const heroProgress = clampProgress(distance / (viewport * (mobile ? .2 : .4)));
-  const approachProgress = clampProgress((distance - viewport * (mobile ? .22 : .45)) / (viewport * (mobile ? .18 : .3)));
+  const heroProgress = clampProgress(distance / (viewport * .4));
+  const approachProgress = clampProgress((distance - viewport * .45) / (viewport * .3));
   // Smooth both ends while keeping the animation tied to the scroll position.
   const fade = approachProgress * approachProgress * (3 - 2 * approachProgress);
   hero.style.setProperty('--hero-whiteout', heroProgress.toFixed(3));
@@ -147,6 +150,7 @@ window.addEventListener('resize', requestHeroTransition);
 window.addEventListener('load', requestHeroTransition);
 window.addEventListener('pageshow', requestHeroTransition);
 reducedMotion.addEventListener?.('change', requestHeroTransition);
+compactHeroLayout.addEventListener?.('change', requestHeroTransition);
 syncHeroTransition();
 
 function syncVideo() {
