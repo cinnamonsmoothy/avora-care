@@ -110,13 +110,15 @@ function syncHeroTransition() {
   const viewport = window.innerHeight;
   const distance = -hero.parentElement.getBoundingClientRect().top;
   if (compactHeroLayout.matches) {
-    // The hero remains full-screen and white during the hold. The next section
-    // then scrolls over it in normal flow, so tall content never unsticks early.
-    const fade = clampProgress(distance / (hero.offsetHeight * .3));
-    hero.style.setProperty('--hero-whiteout', fade.toFixed(3));
-    approach.classList.add('is-present');
-    approach.style.removeProperty('--approach-opacity');
+    // Fade to white, hold briefly, then reveal the care section in the same
+    // viewport instead of adding an empty viewport between the sections.
+    const progress = distance / hero.offsetHeight;
+    hero.style.setProperty('--hero-whiteout', clampProgress(progress / .3).toFixed(3));
+    const reveal = clampProgress((progress - .4) / .15);
+    const fade = reveal * reveal * (3 - 2 * reveal);
+    approach.style.setProperty('--approach-opacity', fade.toFixed(3));
     approach.style.removeProperty('--approach-offset');
+    approach.classList.toggle('is-present', fade > .1);
     if (fallingLeaf) fallingLeaf.style.opacity = '0';
     return;
   }
