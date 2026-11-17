@@ -385,14 +385,12 @@ img, video { max-width: 100%; }
   .service-group .service-icon { width: 42px; height: 42px; }
 }
 
-/* Mobile scrolling never uses the overlapping hero/approach layers. Keep this
-   guard in CSS too, so touch scrolling cannot expose a stale pinned frame. */
+/* Pin only the mobile hero. A scroll spacer holds the full-screen white
+   frame before the taller approach section scrolls over it in normal flow. */
 @media (max-width: 900px), (max-height: 650px), (hover: none) {
   .scroll-transition .hero-approach-transition { min-height: 0; }
-  .scroll-transition .hero { position: relative; top: auto; }
-  .hero::after { display: block; }
-  .scroll-transition .intro-section { position: relative; top: auto; margin-top: 0; min-height: 0; padding-block: 82px; background: #fff; opacity: 1; transform: none; pointer-events: auto; }
-  .intro-section .reveal { opacity: 1; transform: none; transition: none; }
+  .scroll-transition .hero { position: sticky; top: 0; height: 100lvh; min-height: 100lvh; margin-bottom: 55svh; }
+  .scroll-transition .intro-section { position: relative; z-index: 4; top: auto; margin-top: 0; min-height: 100svh; padding-block: 82px; background: #fff; opacity: 1; transform: none; pointer-events: auto; }
+  .scroll-transition .intro-section .reveal { opacity: 1; transform: none; transition: none; }
 }
-
 @media (prefers-reduced-motion: reduce) { .hero::after { display: none; } }

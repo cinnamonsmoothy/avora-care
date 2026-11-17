@@ -85,7 +85,7 @@ if ('IntersectionObserver' in window) {
 
 // Respect OS reduced-motion setting and avoid wasting power in hidden tabs.
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-// Tall mobile content must scroll in normal flow rather than overlap the pinned hero.
+// Keep the mobile hero pinned while the taller care section scrolls over it.
 const compactHeroLayout = window.matchMedia('(max-width: 900px), (max-height: 650px), (hover: none)');
 const hero = document.getElementById('home');
 const approach = document.getElementById('approach');
@@ -97,13 +97,10 @@ let transitionFrame = 0;
 function syncHeroTransition() {
   transitionFrame = 0;
   if (!hero || !approach) return;
-  const transitionEnabled = !reducedMotion.matches && !compactHeroLayout.matches;
+  const transitionEnabled = !reducedMotion.matches;
   document.documentElement.classList.toggle('scroll-transition', transitionEnabled);
   if (!transitionEnabled) {
-    // Fade the normally scrolling hero using its stable height, not the
-    // changing mobile browser viewport. No pinned overlap is needed.
-    const fade = reducedMotion.matches ? 0 : clampProgress(-hero.getBoundingClientRect().top / (hero.offsetHeight * .4));
-    hero.style.setProperty('--hero-whiteout', fade.toFixed(3));
+    hero.style.setProperty('--hero-whiteout', '0');
     approach.classList.remove('is-present');
     approach.style.removeProperty('--approach-opacity');
     approach.style.removeProperty('--approach-offset');
@@ -112,6 +109,17 @@ function syncHeroTransition() {
   }
   const viewport = window.innerHeight;
   const distance = -hero.parentElement.getBoundingClientRect().top;
+  if (compactHeroLayout.matches) {
+    // The hero remains full-screen and white during the hold. The next section
+    // then scrolls over it in normal flow, so tall content never unsticks early.
+    const fade = clampProgress(distance / (hero.offsetHeight * .3));
+    hero.style.setProperty('--hero-whiteout', fade.toFixed(3));
+    approach.classList.add('is-present');
+    approach.style.removeProperty('--approach-opacity');
+    approach.style.removeProperty('--approach-offset');
+    if (fallingLeaf) fallingLeaf.style.opacity = '0';
+    return;
+  }
   const heroProgress = clampProgress(distance / (viewport * .4));
   const approachProgress = clampProgress((distance - viewport * .45) / (viewport * .3));
   // Smooth both ends while keeping the animation tied to the scroll position.
