@@ -58,9 +58,7 @@ function syncActiveSection() {
   const marker = header.offsetHeight + window.innerHeight * .2;
   let active = sections[0];
   sections.forEach(section => {
-    if (section.id === 'approach' && document.documentElement.classList.contains('scroll-transition')) {
-      if (section.parentElement.getBoundingClientRect().top <= -window.innerHeight * .5) active = section;
-    } else if (section.getBoundingClientRect().top <= marker) active = section;
+    if (section.getBoundingClientRect().top <= marker) active = section;
   });
   if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
     active = sections[sections.length - 1];
@@ -85,9 +83,7 @@ if ('IntersectionObserver' in window) {
 
 // Respect OS reduced-motion setting and avoid wasting power in hidden tabs.
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-// Keep the mobile hero pinned while the taller care section scrolls over it.
-const compactHeroLayout = window.matchMedia('(max-width: 900px), (max-height: 650px), (hover: none)');
-const hero = document.getElementById('home');
+// Animate the decorative leaf as the care section scrolls into view.
 const approach = document.getElementById('approach');
 const fallingLeaf = document.getElementById('falling-leaf');
 const leafFlightPath = document.getElementById('leaf-flight-path');
@@ -96,63 +92,28 @@ const clampProgress = value => Math.min(1, Math.max(0, value));
 let transitionFrame = 0;
 function syncHeroTransition() {
   transitionFrame = 0;
-  if (!hero || !approach) return;
-  const transitionEnabled = !reducedMotion.matches;
-  document.documentElement.classList.toggle('scroll-transition', transitionEnabled);
-  if (!transitionEnabled) {
-    hero.style.setProperty('--hero-whiteout', '0');
-    approach.classList.remove('is-present');
-    approach.style.removeProperty('--approach-opacity');
-    approach.style.removeProperty('--approach-offset');
-    if (fallingLeaf) fallingLeaf.style.opacity = '0';
+  if (!approach || !fallingLeaf || !leafPathLength) return;
+  if (reducedMotion.matches || window.innerWidth <= 900) {
+    fallingLeaf.style.opacity = '0';
     return;
   }
   const viewport = window.innerHeight;
-  const distance = -hero.parentElement.getBoundingClientRect().top;
-  if (compactHeroLayout.matches) {
-    // Fade to white, hold briefly, then reveal the care section in the same
-    // viewport instead of adding an empty viewport between the sections.
-    const progress = distance / hero.offsetHeight;
-    hero.style.setProperty('--hero-whiteout', clampProgress(progress / .3).toFixed(3));
-    const reveal = clampProgress((progress - .4) / .15);
-    const fade = reveal * reveal * (3 - 2 * reveal);
-    approach.style.setProperty('--approach-opacity', fade.toFixed(3));
-    approach.style.removeProperty('--approach-offset');
-    approach.classList.toggle('is-present', fade > .1);
-    if (fallingLeaf) fallingLeaf.style.opacity = '0';
-    return;
-  }
-  const heroProgress = clampProgress(distance / (viewport * .4));
-  const approachProgress = clampProgress((distance - viewport * .45) / (viewport * .3));
-  // Smooth both ends while keeping the animation tied to the scroll position.
-  const fade = approachProgress * approachProgress * (3 - 2 * approachProgress);
-  hero.style.setProperty('--hero-whiteout', heroProgress.toFixed(3));
-  approach.classList.toggle('is-present', fade > .1);
-  approach.style.setProperty('--approach-opacity', fade.toFixed(3));
-  approach.style.setProperty('--approach-offset', `${(1 - fade) * 28}px`);
-  if (fallingLeaf && leafPathLength) {
-    if (reducedMotion.matches || window.innerWidth <= 900) {
-      fallingLeaf.style.opacity = '0';
-      return;
-    }
-    // Run the supplied flight path during the approach section's scroll hold.
-    const progress = clampProgress((distance / viewport - .65) / 2.5);
-    const point = leafFlightPath.getPointAtLength(progress * leafPathLength);
-    const sectionBounds = approach.getBoundingClientRect();
-    const contentBounds = approach.querySelector('.intro-grid').getBoundingClientRect();
-    const gutter = Math.max(0, sectionBounds.right - contentBounds.right);
-    const leafWidth = Math.min(40, gutter * .5);
-    fallingLeaf.style.setProperty('--leaf-center', `${contentBounds.right - sectionBounds.left + gutter / 2}px`);
-    fallingLeaf.style.setProperty('--leaf-width', `${leafWidth}px`);
-    // Centre the path's sideways excursions in the available right-hand gutter.
-    const windRoom = Math.max(0, gutter - leafWidth - 16);
-    const x = (point.x / 100 - .5) * windRoom;
-    const y = (point.y / 100) * viewport;
-    const angle = -25 + progress * 370 + Math.sin(progress * Math.PI * 8) * 16;
-    const opacity = Math.max(0, Math.min(1, progress / .1, (1 - progress) / .18));
-    fallingLeaf.style.transform = `translateX(-50%) translate3d(${x}px, ${y}px, 0) rotate(${angle}deg)`;
-    fallingLeaf.style.opacity = String(opacity);
-  }
+  const progress = clampProgress((viewport - approach.getBoundingClientRect().top) / (viewport + approach.offsetHeight));
+  const point = leafFlightPath.getPointAtLength(progress * leafPathLength);
+  const sectionBounds = approach.getBoundingClientRect();
+  const contentBounds = approach.querySelector('.intro-grid').getBoundingClientRect();
+  const gutter = Math.max(0, sectionBounds.right - contentBounds.right);
+  const leafWidth = Math.min(40, gutter * .5);
+  fallingLeaf.style.setProperty('--leaf-center', `${contentBounds.right - sectionBounds.left + gutter / 2}px`);
+  fallingLeaf.style.setProperty('--leaf-width', `${leafWidth}px`);
+  // Centre the path's sideways excursions in the available right-hand gutter.
+  const windRoom = Math.max(0, gutter - leafWidth - 16);
+  const x = (point.x / 100 - .5) * windRoom;
+  const y = (point.y / 100) * viewport;
+  const angle = -25 + progress * 370 + Math.sin(progress * Math.PI * 8) * 16;
+  const opacity = Math.max(0, Math.min(1, progress / .1, (1 - progress) / .18));
+  fallingLeaf.style.transform = `translateX(-50%) translate3d(${x}px, ${y}px, 0) rotate(${angle}deg)`;
+  fallingLeaf.style.opacity = String(opacity);
 }
 function requestHeroTransition() {
   if (!transitionFrame) transitionFrame = requestAnimationFrame(syncHeroTransition);
@@ -162,7 +123,6 @@ window.addEventListener('resize', requestHeroTransition);
 window.addEventListener('load', requestHeroTransition);
 window.addEventListener('pageshow', requestHeroTransition);
 reducedMotion.addEventListener?.('change', requestHeroTransition);
-compactHeroLayout.addEventListener?.('change', requestHeroTransition);
 syncHeroTransition();
 
 function syncVideo() {

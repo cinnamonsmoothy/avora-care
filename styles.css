@@ -283,18 +283,7 @@ img, video { max-width: 100%; }
   .hero-assurances { margin-top: 24px; }
 }
 
-/* Hold the white transition while the approach appears at the viewport centre. */
-.hero-approach-transition { position: relative; }
-.scroll-transition .hero-approach-transition { min-height: 420svh; }
-.scroll-transition .hero { position: sticky; top: 0; }
-.hero::after { content: ''; position: absolute; z-index: 3; inset: 0; background: #fff; opacity: var(--hero-whiteout, 0); pointer-events: none; }
-.scroll-transition .intro-section { position: sticky; top: 0; margin-top: -100svh; min-height: 100svh; padding-block: max(100px, 10svh); display: flex; flex-direction: column; justify-content: center; background: transparent; opacity: var(--approach-opacity, 0); transform: translateY(var(--approach-offset, 0px)); pointer-events: none; }
-.scroll-transition .intro-section.is-present { pointer-events: auto; }
-.scroll-transition .intro-section .reveal { opacity: 1; transform: none; transition: none; }
-.scroll-transition .intro-grid { align-items: center; }
-.scroll-transition .intro-grid .section-copy { padding-top: 0; }
 @media (prefers-reduced-motion: reduce) {
-  .hero::after { display: none; }
   .falling-leaf { display: none; }
 }
 
@@ -384,14 +373,3 @@ img, video { max-width: 100%; }
   .service-group .service-card { grid-template-columns: 42px minmax(0, 1fr); gap: 5px 14px; padding: 16px; }
   .service-group .service-icon { width: 42px; height: 42px; }
 }
-
-/* Keep the white hold brief and reveal the care section within the same
-   viewport. Only the hero is pinned; tall care content scrolls normally. */
-@media (max-width: 900px), (max-height: 650px), (hover: none) {
-  .scroll-transition .hero-approach-transition { min-height: 0; }
-  .scroll-transition .hero { position: sticky; top: 0; height: 100lvh; min-height: 100lvh; margin-bottom: 0; }
-  .scroll-transition .intro-section { position: relative; z-index: 4; top: auto; margin-top: -50lvh; min-height: 100svh; padding-block: 82px; background: #fff; opacity: var(--approach-opacity, 0); transform: none; pointer-events: none; }
-  .scroll-transition .intro-section.is-present { pointer-events: auto; }
-  .scroll-transition .intro-section .reveal { opacity: 1; transform: none; transition: none; }
-}
-@media (prefers-reduced-motion: reduce) { .hero::after { display: none; } }
