@@ -104,7 +104,7 @@ function syncHeroTransition() {
   wrapper.style.setProperty('--approach-height', `${sectionHeight}px`);
   const heroHeight = document.getElementById('home').offsetHeight;
   const distance = -wrapper.getBoundingClientRect().top - heroHeight;
-  const progress = clampProgress(distance / (viewport * 2.5));
+  const progress = clampProgress(distance / (viewport * 1.25));
   const point = leafFlightPath.getPointAtLength(progress * leafPathLength);
   const sectionBounds = approach.getBoundingClientRect();
   const contentBounds = approach.querySelector('.intro-grid').getBoundingClientRect();
@@ -115,10 +115,12 @@ function syncHeroTransition() {
   // Centre the path's sideways excursions in the available right-hand gutter.
   const windRoom = Math.max(0, gutter - leafWidth - 16);
   const x = (point.x / 100 - .5) * windRoom;
-  const leafHeight = fallingLeaf.getBoundingClientRect().height;
-  const y = (point.y / 100) * Math.max(0, sectionHeight - leafHeight);
+  // Use untransformed dimensions: measuring the rotated leaf feeds its last
+  // frame back into its position. Keep the descent separate from the swaying path.
+  const leafHeight = leafWidth * 88 / 64;
+  const y = -sectionBounds.top - leafHeight + progress * (viewport + leafHeight);
   const angle = -25 + progress * 370 + Math.sin(progress * Math.PI * 8) * 16;
-  const opacity = Math.max(0, Math.min(1, progress / .1, (1 - progress) / .18));
+  const opacity = Math.max(0, Math.min(1, progress / .025, (1 - progress) / .08));
   fallingLeaf.style.transform = `translateX(-50%) translate3d(${x}px, ${y}px, 0) rotate(${angle}deg)`;
   fallingLeaf.style.opacity = String(opacity);
 }
