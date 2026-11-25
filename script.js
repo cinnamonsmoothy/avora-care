@@ -173,7 +173,7 @@ function updateWhatsappMessage() {
   const introduction = enquiryMessages[reason];
   const details = showMessage ? contactMessage.value.trim() : '';
   const message = details ? `${introduction}\n\n${details}` : introduction;
-  contactLink.href = `https://wa.me/447777777777?text=${encodeURIComponent(message)}`;
+  contactLink.href = `https://wa.me/447459534345?text=${encodeURIComponent(message)}`;
 }
 contactOptions.forEach(option => option.addEventListener('change', updateWhatsappMessage));
 contactMessage.addEventListener('input', updateWhatsappMessage);
